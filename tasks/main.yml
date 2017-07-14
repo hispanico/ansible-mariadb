@@ -1,12 +1,41 @@
 ---
 # tasks file for ansible-mariadb
 
+- name: Include release specific variables
+  include_vars: "{{ ansible_distribution_release }}.yml"
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+
 - name: Install tools
   apt:
     name: "{{item}}"
     state: present
   with_items:
     - python-mysqldb
+    - software-properties-common
+  tags:
+    - packages
+    - mariadb
+
+- name: Add MariaDB repository key
+  apt_key:
+    id: "{{ mariadb_apt_keyid }}"
+    keyserver: "hkp://keyserver.ubuntu.com:80"
+    state: present
+  register:
+    repokey
+  tags:
+    - packages
+    - mariadb
+
+- name: Add MariaDB 10.2 stable Repositor
+  apt_repository:
+    repo: "{{ mariadb_apt_repository }}"
+    state: present
+    update_cache: yes
+  register:
+    repostable
+  when:
+    repokey|success
   tags:
     - packages
     - mariadb
@@ -15,6 +44,8 @@
   apt:
     name: mariadb-server
     state: present
+  when:
+    repostable|success
   tags:
     - packages
     - mariadb
@@ -35,6 +66,14 @@
   tags:
     - configure
     - mariadb
+
+- name: Create .my.cnf
+  template:
+    src: "client.my.cnf.j2"
+    dest: "/{{ ansible_env.HOME}}/.my.cnf"
+    owner: root
+    group: root
+    mode: 0600
 
 - name: Ensure anonymous mariadb user is absent
   mysql_user:
