@@ -1,0 +1,5 @@
+---
+# vars file for ansible-mariadb (Ubuntu Trusty specific)
+
+mariadb_apt_repository: 'deb [arch=amd64,i386,ppc64el] http://nl.mirror.babylon.network/mariadb/repo/10.2/ubuntu trusty main'
+mariadb_apt_keyid: "0xcbcb082a1bb943db"
