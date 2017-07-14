@@ -1,0 +1,10 @@
+---
+# defaults file for ansible-mariadb
+
+mariadb_root_pw: Ch@ng3Me         # DB root password
+
+databases:                        # List of Databases
+  mydb:                           # DB name
+    db_user_name: dbuser          # DB Username
+    db_user_passwd: dbpasswd      # DB User password
+    db_user_host: localhost       # DB User access from
