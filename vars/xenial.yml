@@ -1,5 +1,0 @@
----
-# vars file for ansible-mariadb (Ubuntu Xenial specific)
-
-mariadb_apt_repository: 'deb [arch=amd64,i386,ppc64el] http://nl.mirror.babylon.network/mariadb/repo/10.2/ubuntu xenial main'
-mariadb_apt_keyid: "0xF1656F24C74CD1D8"

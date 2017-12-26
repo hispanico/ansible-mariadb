@@ -3,7 +3,7 @@ ansible-mariadb
 [![Build Status](https://img.shields.io/travis/hispanico/ansible-mariadb.svg?style=flat-square)](https://travis-ci.org/hispanico/ansible-mariadb)
 [![Galaxy](https://img.shields.io/badge/galaxy-hispanico.mariasb-blue.svg?style=flat-square)](https://galaxy.ansible.com/hispanico/mariadb/)
 
-Install and configures Mariadb 10.2.
+Install and configures Mariadb
 
 Requirements
 ------------
