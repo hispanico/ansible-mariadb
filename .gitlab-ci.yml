@@ -42,8 +42,9 @@ AnsibleRoleCheck:
       || (echo 'Idempotence test: fail' && exit 1)
 
     # Check for role is done
+    - lxdock shell $lxc -c mysql --version
     - lxdock shell $lxc -c mysql -u dbuser -pdbpasswd -e "show databases"
     - lxdock shell $lxc -c mysql -u dbuser -pdbpasswd -e "SHOW GRANTS FOR 'dbuser'@'localhost'"
-    
+
 after_script:
   - lxdock destroy -f
