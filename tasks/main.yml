@@ -16,8 +16,6 @@
   apt:
     name: mariadb-server
     state: present
-  when:
-    repostable|success
   tags:
     - packages
     - mariadb
