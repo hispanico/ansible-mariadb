@@ -30,8 +30,6 @@
     - mariadb
 
 - name: Ensure mariadb root password is set
-  when:
-    - not ansible_check_mode
   mysql_user:
     name: root
     password: "{{ mariadb_root_pw }}"
